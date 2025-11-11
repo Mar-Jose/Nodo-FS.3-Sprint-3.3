@@ -5,6 +5,9 @@ import superHeroRoutes from './routes/superHeroRoutes.mjs';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Configura EJS como el motor de vistas en Extress. Sprint 3. tp 3.
+app.set('view engine', 'ejs');
+
 // Middleware para parsear JSON:
 app.use(express.json());
 
