@@ -57,6 +57,7 @@ export async function obtenerSuperHeroesMayoresDe30Controller(req, res) {
 
 export async function crearSuperHeroeController(req, res) {
   try {
+   // console.log("estoy en el controlador crear");
     const nuevoSuperheroe = req.body;
     const superheroeCreado = await crearSuperHeroe(nuevoSuperheroe);
     
