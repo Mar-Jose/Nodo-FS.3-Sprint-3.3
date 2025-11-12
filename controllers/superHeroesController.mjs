@@ -19,8 +19,12 @@ export async function obtenerSuperHeroePorIdController(req, res) {
 export async function obtenerTodosLosSuperHeroesController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperHeroes();
+        //sprint 3. tp 3. Etapa 2. Requerimiento 3.
+        res.render('dashboard',{ heroes: superheroes }); 
+        /*pertenece a  sprint anteriores ahora reeplazado por la linea anterior a esta.
         const superheroesFormateados = renderizarListaSuperheroes(superheroes);
         return res.status(200).json(superheroesFormateados);
+        */
     } catch (error) {
         return res.status(500).send({ mensaje: 'Error al obtener los superhéroes', error: error.message });
     }

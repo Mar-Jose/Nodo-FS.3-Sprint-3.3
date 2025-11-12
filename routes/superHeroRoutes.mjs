@@ -12,14 +12,9 @@ import {
 } from '../controllers/superHeroesController.mjs';
 
     // sprint 3. Tp 2:
-import { validate 
-} 
-from '../validations/validationMiddlewre.mjs';
+import { validate } from '../validations/validationMiddlewre.mjs';
 
-import {
-        superheroeValidations
-} from '../validations/superheroesValidations.mjs';
-
+import { superheroeValidations } from '../validations/superheroesValidations.mjs';
 
 const router = express.Router();
 
