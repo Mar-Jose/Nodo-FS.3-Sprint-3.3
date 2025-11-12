@@ -30,6 +30,15 @@ export async function obtenerTodosLosSuperHeroesController(req, res) {
     }
 }
 
+//sprint 3. tp 3. Etapa 3. Requerimiento 2 continua en routes.
+export async function rutaParaFormularioVistaAddController(req, res) {
+    try {     
+        res.render('addSuperhero');        
+    } catch (error) {
+        res.status(500).send({ mensaje: 'Error al crear el Super Héroe', error: error.message });
+    }    
+} 
+
 export async function buscarSuperheroesPorAtributoController(req, res) {
     try {
         const { atributo, valor } = req.params;
@@ -57,22 +66,33 @@ export async function obtenerSuperHeroesMayoresDe30Controller(req, res) {
     }
 }
 
-// sprint 3. tp 1.
+// sprint 3. tp 1. 
 
 export async function crearSuperHeroeController(req, res) {
   try {
-   // console.log("estoy en el controlador crear");
     const nuevoSuperheroe = req.body;
     const superheroeCreado = await crearSuperHeroe(nuevoSuperheroe);
     
     const superheroeFormateado = renderizarSuperheroe(superheroeCreado);
     res.status(201).json(superheroeFormateado);
   } catch (error) {
-    res.status(500).send({mensaje: "Error al crear el superheroe", error: error.message,
-});
+    res.status(500).send({mensaje: "Error al crear el superhéroe", error: error.message,});
   }
 }
- 
+
+//sprint 3. tp 3. Etapa 3. Requerimiento 3.
+export async function AgregarSuperHeroeController(req, res) {
+  try {
+    const nuevoSuperheroe = req.body;
+    const superheroeCreado = await crearSuperHeroe(nuevoSuperheroe);
+     res.redirect('/heroes');
+      } catch (error) {
+        res.status(500).render('addSuperheroe', {error:'Error al crear el superhéroe.'});
+      }
+    };
+
+ // sprint 3. tp 1. 
+
 export async function actualizarSuperHeroeController(req, res) {
   try {
     const { id } = req.params;
