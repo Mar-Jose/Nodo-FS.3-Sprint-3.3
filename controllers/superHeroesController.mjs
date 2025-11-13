@@ -16,12 +16,28 @@ export async function obtenerSuperHeroePorIdController(req, res) {
         return res.status(500).send ({ mensaje: 'Error al obtener el superhéroe', error: error.message });
     }
 }
+// sprint 3. tp 3. Etapa 4. Requerimiento 4.
+export async function editarSuperheroeController(req, res) {
+    try {
+        const { id } = req.params; 
+        const heroe = await obtenerSuperHeroePorId(id);
+
+        if (!heroe) {
+            return res.status(404).render('errorPage', { mensaje: 'Error al obtener el superhéroe.' }); }
+            res.render('editSuperhero', { heroe: heroe }); 
+        
+    } catch (error) {
+        console.error("Error al cargar el formulario de edición:", error);
+        res.status(500).send({ mensaje: 'Error al obtener datos para edición.', error: error.message });
+    }
+}
+
 export async function obtenerTodosLosSuperHeroesController(req, res) {
     try {
         const superheroes = await obtenerTodosLosSuperHeroes();
         //sprint 3. tp 3. Etapa 2. Requerimiento 3.
         res.render('dashboard',{ heroes: superheroes }); 
-        /*pertenece a  sprint anteriores ahora reeplazado por la linea anterior a esta.
+        /*pertenece a  sprint anteriores (las 2 lineas siguientes) ahora reeplazado por la linea anterior a esta.
         const superheroesFormateados = renderizarListaSuperheroes(superheroes);
         return res.status(200).json(superheroesFormateados);
         */

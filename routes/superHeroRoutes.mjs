@@ -11,8 +11,10 @@ import {
     eliminarSuperHeroexNombreController,
     //sprint 3. tp 3. Etapa 3. Requerimiento 2 finaliza aquí en routes. Import la función.
     rutaParaFormularioVistaAddController,
-    ////sprint 3. tp 3. Etapa 3. Requerimiento 3.
+    //sprint 3. tp 3. Etapa 3. Requerimiento 3.
     AgregarSuperHeroeController,
+    //sprint 3. tp 3. Etapa 4. Requerimiento 2. 
+    editarSuperheroeController,
 
    
 } from '../controllers/superHeroesController.mjs';
@@ -36,7 +38,11 @@ router.delete('/heroes/id/:id', eliminarSuperHeroexIdController);
 router.delete('/heroes/nombre/:nombre', eliminarSuperHeroexNombreController);
 //sprint 3. tp 3. Etapa 3. Requerimiento 2 finaliza aquí en routes. Crea el endpoint:
 router.get('/heroes/nuevo', rutaParaFormularioVistaAddController);
-////sprint 3. tp 3. Etapa 3. Requerimiento 3.
+//sprint 3. tp 3. Etapa 3. Requerimiento 3.
 router.post('/heroes', superheroeValidations, validate, AgregarSuperHeroeController); 
+//sprint 3. tp 3. Etapa 4. Requerimiento 2.
+router.get('/heroes/:id/editar', editarSuperheroeController);
+//sprint 3. tp 3. Etapa 4. Requerimiento 3.
+router.put('/heroes/id/:id', superheroeValidations, validate, actualizarSuperHeroeController);
 
 export default router;
