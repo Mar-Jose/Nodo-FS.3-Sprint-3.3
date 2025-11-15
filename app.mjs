@@ -1,5 +1,6 @@
 import express from 'express';
 import { connectDB } from './config/dbConfig.mjs';
+import methodOverride from 'method-override'; 
 import superHeroRoutes from './routes/superHeroRoutes.mjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -16,8 +17,14 @@ app.set('view engine', 'ejs');
 // Configura EJS como el DIRECTORIO de vistas en Extress. Sprint 3. tp 3.
 app.set('views', path.join(__dirname, 'views'));
 
+//Middleware para procesar datos del formulario. Permite leer las peticiones. Sprint 5. tp 3. Etapa 5.
+app.use(express.urlencoded({ extended: false }));
+
 // Middleware para parsear JSON:
 app.use(express.json());
+
+// sprint 3 tp 3 Etapa 5.
+app.use(methodOverride('_method'));
 
 // Conexión a MongoDB:
 connectDB();

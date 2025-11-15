@@ -65,6 +65,7 @@
  </h2>
 </section>
 
+/*
 <main class="container">
  <div style="display: flex; flex-wrap: wrap; gap: 20px;">
  <% heroes.forEach(hero => { %>
@@ -82,10 +83,14 @@
          <a href="/api/heroes/<%= hero.id %>/editar">
              Editar
         </a>
-
-         <form id="form-<%= hero.id %>" action="/api/heroes/<%= hero.id %>?_method=DELETE" method="POST" style="display: inline;">
+// Sprint 3. tp 3. Etapa 5. Requerimiento 1:
+         <form id="form-<%= hero.id %>" 
+               action="/api/heroes/<%= hero.id %>?_method=DELETE" 
+               method="POST" 
+               style="display: inline;">
          <button type="button"
-             onclick="confirmarEliminacion('<%= hero.id %>')">
+             onclick="confirmarEliminacion('<%= hero.id %>')"
+             style="background-color: #dc3545; color: white; border: none; padding: 8px 12px; cursor: pointer;">
                  Eliminar
              </button>
             </form>
@@ -94,6 +99,58 @@
     <% }) %>
 </div>
 </main>
+*/
+// Sprint 3. tp 3. Etapa &
+<body>
+ <div class="container">
+    <h1>Dashboard de Superhéroes</h1>
+    
+    <% heroes.forEach(hero => { %>
+    <article class="hero-card">
+        <h2><%= hero.nombreSuperHeroe %></h2>
+        <p><strong>Nombre Real:</strong> <%= hero.nombreReal %></p>
+        <p><strong>Edad:</strong> <%= hero.edad %></p>
+        <p><strong>Planeta:</strong> <%= hero.planetaOrigen %></p>
+        <p><strong>Poderes:</strong> <%= hero.poderes && Array.isArray(hero.poderes) ? hero.poderes.join(', ') : 'N/A' %> </p>
+        
+        <p><strong>Debilidades:</strong> <%= hero.debilidad %></p>
+
+        <a href="/heroes/<%= hero._id %>">Ver más</a> 
+
+        <div class="hero-actions" style="margin-top: 10px;">
+        
+        <a href="/heroes/<%= hero._id %>/editar" 
+             style="background-color: #007bff; color: white; border: none; padding: 8px 12px; cursor: pointer; text-decoration: none;">
+             Editar
+        </a>
+
+        <form id="form-<%= hero._id %>" 
+               action="/heroes/id/<%= hero._id %>?_method=DELETE" 
+               method="POST" 
+               style="display: inline;">
+         <button type="button"
+             onclick="confirmarEliminacion('<%= hero._id %>')" 
+             style="background-color: #dc3545; color: white; border: none; padding: 8px 12px; cursor: pointer;">
+                 Eliminar
+             </button>
+            </form>
+        </div>
+    </article>
+    <% }) %>
+    </div>
+ 
+<script>
+  function confirmarEliminacion(heroId) {
+     // Lógica de SweetAlert2 y redirección 
+     Swal.fire({ /* ... */ }).then((result) => {
+        if (result.isConfirmed) {
+           document.getElementById('form-' + heroId).submit();
+        }
+     });
+  }
+</script>
+
+</body>
 
 <script>
   function confirmarEliminacion(heroId) {
