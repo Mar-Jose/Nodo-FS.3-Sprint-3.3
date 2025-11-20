@@ -45,7 +45,9 @@ router.post('/heroes', superheroeValidations, validate, AgregarSuperHeroeControl
 //sprint 3. tp 3. Etapa 4. Requerimiento 2.
 router.get('/heroes/:id/editar', editarSuperheroeController);
 //sprint 3. tp 3. Etapa 4. Requerimiento 3...
-router.put('/heroes/id/:id', superheroeValidations, validate, actualizarSuperHeroeController);
+router.put('/heroes/actualizar/:id', superheroeValidations, validate, actualizarSuperHeroeController);
+//
+ //GET  /heroes/id/:id/editar   -> render('editSuperhero', { heroe })
 //Sprint 3. tp 3. Etapa 5. Requerimiento 3...
 router.delete('/heroes/id/:id', eliminarSuperheroeController);
 // Sprint 3. tp 3. Etapa & Requerimiento 1.
@@ -56,5 +58,6 @@ router.delete('/heroes/id/:id', eliminarSuperheroeController);
 router.post('/heroes/agregar', superheroeValidations, validate, AgregarSuperHeroeController);
 //sprint 3. tp 3. Etapa &. Requerimiento 3.
 router.get('/heroes/:id/editar', editarSuperheroeController);
-
+//Requerimientos del sprint 3. tp 3. Etapa &. Requerimiento :
+router.put('/heroes/id/:id', superheroeValidations,validate,  actualizarSuperHeroeController);
 export default router;

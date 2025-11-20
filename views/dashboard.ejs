@@ -1,4 +1,4 @@
-// sprint 3. tp 3. Etapa 2.
+ <!-- sprint 3. tp 3. Etapa 2.  -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -6,179 +6,130 @@
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  <title>Superhéroes</title>
- 
 
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <style>
-     body {
+<style>
+ body {
     font-family: sans-serif;
-     background-color: #f0f0f0; 
-    }
-    .container {
-     max-width: 1200px;
-     margin: 0 auto;
-     padding: 20px;
-    }
-    .hero-card {
-     border: 1px solid #ccc;
-     padding: 15px;
-     margin-bottom: 20px;
-     background-color: white;
-    }
-    .hero-actions a, .hero-actions button {
-     padding: 8px 12px;
-     margin-right: 5px;
-     cursor: pointer;
-    }
-    .add-button {
-     position: fixed;
-     top: 20px;
-     left: 20px;
-     padding: 10px;
-     background-color: #007bff;
-     color: white;
-     text-decoration: none;
-    }
-    h1 {
-     color: #333;
-     margin-bottom: 50px;
-    }
+    background-color: #f0f0f0; 
+ }
+ .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+ }
+ .hero-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: white;
+ }
+ .hero-actions a, .hero-actions button {
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+ }
+ .add-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+ }
+ h1 {
+    color: #333;
+    margin-bottom: 30px;
+ }
 </style>
 </head>
 
 <body>
 
-<a href="/api/heroes/nuevo"
-    class="add-button">
-    Agregar superhéroe
-</a>
+<a href="/api/heroes/nuevo" class="add-button">Agregar superhéroe</a>
 
 <section class="container" style="text-align: center;">
-    <div>
-    <h1 style="font-size: 3em;">
-     Superhéroes
-  </h1>
- </div>
- <h2>
-     Listado de Superhéroes
- </h2>
+    <h1>Superhéroes</h1>
+    <h2>Listado de Superhéroes</h2>
 </section>
 
-/*
 <main class="container">
  <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+ <% if (heroes.length > 0) { %>
  <% heroes.forEach(hero => { %>
-     <article class="hero-card" style="flex: 1 1 calc(50% - 20px);">
-         <h3><%= hero.nombreSuperheroe %></h3>
+
+    <article class="hero-card" style="flex: 1 1 calc(50% - 20px);">
+        <h3><%= hero.nombreSuperheroe %></h3>
         <p><strong>Nombre real:</strong> <%= hero.nombreReal %></p>
         <p><strong>Edad:</strong> <%= hero.edad %></p>
         <p><strong>Planeta de origen:</strong> <%= hero.planetaOrigen %></p>
         <p><strong>Poderes:</strong> <%= hero.poderes %></p>
         <p><strong>Debilidades:</strong> <%= hero.debilidad %></p>
 
-        <a href="/api/heroes/<%= hero.id %>">Ver más</a>
+        <a href="/api/heroes/id/<%= hero.id %>">Ver más</a>
 
         <div class="hero-actions" style="margin-top: 10px;">
-         <a href="/api/heroes/<%= hero.id %>/editar">
-             Editar
-        </a>
-// Sprint 3. tp 3. Etapa 5. Requerimiento 1:
-         <form id="form-<%= hero.id %>" 
-               action="/api/heroes/<%= hero.id %>?_method=DELETE" 
-               method="POST" 
-               style="display: inline;">
-         <button type="button"
-             onclick="confirmarEliminacion('<%= hero.id %>')"
-             style="background-color: #dc3545; color: white; border: none; padding: 8px 12px; cursor: pointer;">
-                 Eliminar
-             </button>
+
+            <!-- Sprint 3. tp 3. Etapa 4. Requerimiento 5: BOTÓN EDITAR  -->
+            <a href="/api/heroes/id/<%= hero.id %>/editar"
+               style="background-color: #007bff; color: white; border: none; 
+                      padding: 8px 12px; cursor: pointer; text-decoration: none; 
+                      border-radius:4px;">
+               Editar
+            </a>
+
+            <!-- Sprint 3. tp 3. Etapa 5. Requerimiento 1: BOTÓN ELIMINAR -->
+            <form id="form-<%= hero.id %>" 
+                  action="/api/heroes/id/<%= hero.id %>?_method=DELETE" 
+                  method="POST" 
+                  style="display: inline;">
+
+                <button type="button"
+                        onclick="confirmarEliminacion('<%= hero.id %>')"
+                        style="background-color: #dc3545; color: white; border: none; 
+                               padding: 8px 12px; cursor: pointer; border-radius:4px;">
+                    Eliminar
+                </button>
             </form>
         </div>
     </article>
-    <% }) %>
-</div>
+
+ <% }) %>
+ <% } else { %>
+    <p>No hay superhéroes para mostrar.</p>
+ <% } %>
+
+ </div>
 </main>
-*/
-// Sprint 3. tp 3. Etapa &
-<body>
- <div class="container">
-    <h1>Dashboard de Superhéroes</h1>
-    
-    <% heroes.forEach(hero => { %>
-    <article class="hero-card">
-        <h2><%= hero.nombreSuperHeroe %></h2>
-        <p><strong>Nombre Real:</strong> <%= hero.nombreReal %></p>
-        <p><strong>Edad:</strong> <%= hero.edad %></p>
-        <p><strong>Planeta:</strong> <%= hero.planetaOrigen %></p>
-        <p><strong>Poderes:</strong> <%= hero.poderes && Array.isArray(hero.poderes) ? hero.poderes.join(', ') : 'N/A' %> </p>
-        
-        <p><strong>Debilidades:</strong> <%= hero.debilidad %></p>
-
-        <a href="/heroes/<%= hero._id %>">Ver más</a> 
-
-        <div class="hero-actions" style="margin-top: 10px;">
-        
-        <a href="/heroes/<%= hero._id %>/editar" 
-             style="background-color: #007bff; color: white; border: none; padding: 8px 12px; cursor: pointer; text-decoration: none;">
-             Editar
-        </a>
-
-        <form id="form-<%= hero._id %>" 
-               action="/heroes/id/<%= hero._id %>?_method=DELETE" 
-               method="POST" 
-               style="display: inline;">
-         <button type="button"
-             onclick="confirmarEliminacion('<%= hero._id %>')" 
-             style="background-color: #dc3545; color: white; border: none; padding: 8px 12px; cursor: pointer;">
-                 Eliminar
-             </button>
-            </form>
-        </div>
-    </article>
-    <% }) %>
-    </div>
- 
-<script>
-  function confirmarEliminacion(heroId) {
-     // Lógica de SweetAlert2 y redirección 
-     Swal.fire({ /* ... */ }).then((result) => {
-        if (result.isConfirmed) {
-           document.getElementById('form-' + heroId).submit();
-        }
-     });
-  }
-</script>
-
-</body>
 
 <script>
-  function confirmarEliminacion(heroId) {
-
-     Swal.fire({
-     title: '¿Estás seguro?',
-     text: 'Esta acción eliminará permanentemente al superhéroe.',
-     icon: 'warning',
-     showCancelButton: true,
-     confirmButtonText: 'Sí, eliminar',
-     cancelButtonText: 'Cancelar',
-     confirmButtonColor: '#d33',
-     cancelButtonColor: '#3085d6'
+function confirmarEliminacion(heroId) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará permanentemente al superhéroe.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6'
     }).then((result) => {
-     if (result.isConfirmed) {
-      Swal.fire({
-         title: 'Eliminado',
-         text: 'El superhéroe fue eliminado exitosamente.',
-         icon: 'success',
-         timer: 2000,
-         timerProgressBar: true,
-         showConfirmButton: false,
-        }).then(() => {
-         document.getElementById('form-' + heroId).submit();
-        });
-     }
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Eliminado',
+                text: 'El superhéroe fue eliminado exitosamente.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                document.getElementById('form-' + heroId).submit();
+            });
+        }
     });
-  }
+}
 </script>
 
 </body>

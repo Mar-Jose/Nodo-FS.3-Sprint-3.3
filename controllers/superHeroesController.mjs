@@ -25,10 +25,11 @@ export async function editarSuperheroeController(req, res) {
         if (!heroe) {
             return res.status(404).render('errorPage', { mensaje: 'Error al obtener el superhéroe.' }); }
             res.render('editSuperhero', { heroe: heroe }); 
+        // sprint 3. tp 3. Etapa &. Requerimiento 3.
+            return res.render('editSuperhero', { heroe });
         
     } catch (error) {
-        console.error("Error al cargar el formulario de edición:", error);
-        res.status(500).send({ mensaje: 'Error al obtener datos para edición.', error: error.message });
+        res.status(500).send({ mensaje: 'Error al obtener datos del superhéroe para su edición.', error: error.message });
     }
 }
 
@@ -151,6 +152,33 @@ export async function actualizarSuperHeroeController(req, res) {
     res.status(200).json(superheroeFormateado);
   } catch (error) {
     res.status(500).send({ mensaje: "Error al actualizar el superhéroe", error: error.message,});
+    }
+}
+ // Sprint 3. tp 3. Etapa &. Requerimiento 3 formulario edit...
+ export async function actualizarSuperheroeVistaController(req, res) {
+    const { id } = req.params;
+    const datosSuperheroe = req.body;
+    const errors = validationResult(req);
+    
+    if (!errors.isEmpty()) {
+      return res.status(400).render('editSuperhero', {
+                heroe: await obtenerSuperHeroePorId(id),
+                errores: errors.array(),
+            });
+        }
+
+    try {
+        const superheroeActualizado = await actualizarSuperHeroe(id, datosSuperheroe);
+        
+        if (!superheroeActualizado) {
+            return res.status(404).render('error', { mensaje: "Superhéroe no encontrado para actualizar." });
+        }
+        
+        return res.redirect('/heroes'); 
+
+    } catch (error) {
+        console.error("Error al actualizar superhéroe:", error);
+        return res.status(500).send({ mensaje: 'Error al procesar la solicitud de edición', error: error.message });
     }
 }
 

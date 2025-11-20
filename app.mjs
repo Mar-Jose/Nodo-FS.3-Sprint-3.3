@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 // Configura EJS como el DIRECTORIO de vistas en Extress. Sprint 3. tp 3.
 app.set('views', path.join(__dirname, 'views'));
 
-//Middleware para procesar datos del formulario. Permite leer las peticiones. Sprint 5. tp 3. Etapa 5.
+//Middleware para procesar datos del formulario. Permite leer las peticiones. Sprint 3. tp 3. Etapa 5.
 app.use(express.urlencoded({ extended: false }));
 
 // Middleware para parsear JSON:
