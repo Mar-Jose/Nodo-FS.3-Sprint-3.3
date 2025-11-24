@@ -19,7 +19,7 @@
     <div class="form-container">
         <h1>Editar Superhéroe: <%= heroe.nombreSuperHeroe %></h1>
         <a href="/heroes" style="display: block; margin-bottom: 20px;">Volver al Dashboard</a>  
-        <form action="/heroes/id/<%= heroe._id %>?_method=PUT" method="POST">
+        <form action="/api/heroes/actualizar/<%= heroe._id %>?_method=PUT" method="POST">
             
             <label for="nombreSuperHeroe">Nombre del Superhéroe:</label>
             <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required value="<%= typeof heroe.nombreSuperHeroe !== 'undefined' ? heroe.nombreSuperHeroe : '' %>">

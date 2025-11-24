@@ -24,7 +24,7 @@ export async function editarSuperheroeController(req, res) {
 
         if (!heroe) {
             return res.status(404).render('errorPage', { mensaje: 'Error al obtener el superhéroe.' }); }
-            res.render('editSuperhero', { heroe: heroe }); 
+          //  res.render('editSuperhero', { heroe: heroe }); 
         // sprint 3. tp 3. Etapa &. Requerimiento 3.
             return res.render('editSuperhero', { heroe });
         
@@ -32,6 +32,7 @@ export async function editarSuperheroeController(req, res) {
         res.status(500).send({ mensaje: 'Error al obtener datos del superhéroe para su edición.', error: error.message });
     }
 }
+
 
 export async function obtenerTodosLosSuperHeroesController(req, res) {
     try {
@@ -161,8 +162,9 @@ export async function actualizarSuperHeroeController(req, res) {
     const errors = validationResult(req);
     
     if (!errors.isEmpty()) {
+      const heroe = await obtenerSuperHeroePorId(id);
       return res.status(400).render('editSuperhero', {
-                heroe: await obtenerSuperHeroePorId(id),
+                heroe,
                 errores: errors.array(),
             });
         }
@@ -174,7 +176,7 @@ export async function actualizarSuperHeroeController(req, res) {
             return res.status(404).render('error', { mensaje: "Superhéroe no encontrado para actualizar." });
         }
         
-        return res.redirect('/heroes'); 
+        return res.redirect('/api/heroes'); 
 
     } catch (error) {
         console.error("Error al actualizar superhéroe:", error);
@@ -204,6 +206,7 @@ export async function eliminarSuperheroeController(req, res) {
     const superheroeEliminado = await eliminarSuperHeroexId(id);
     
     if (!superheroeEliminado) {
+      
       return res.redirect('/heroes');
     }
     
