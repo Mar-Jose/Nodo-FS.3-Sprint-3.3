@@ -23,7 +23,7 @@ export async function editarSuperheroeController(req, res) {
         const heroe = await obtenerSuperHeroePorId(id);
 
         if (!heroe) {
-            return res.status(404).render('errorPage', { mensaje: 'Error al obtener el superhéroe.' }); }
+            return res.status(404).send({ mensaje: 'Error al obtener el superhéroe.' });}
           //  res.render('editSuperhero', { heroe: heroe }); 
         // sprint 3. tp 3. Etapa &. Requerimiento 3.
             return res.render('editSuperhero', { heroe });

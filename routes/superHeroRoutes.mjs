@@ -15,6 +15,10 @@ import {
     AgregarSuperHeroeController,
     //sprint 3. tp 3. Etapa 4. Requerimiento 2. 
     editarSuperheroeController,
+    //..
+    actualizarSuperheroeVistaController,
+
+
     //Sprint 3. tp 3 Etapa 5. 
     eliminarSuperheroeController,
 

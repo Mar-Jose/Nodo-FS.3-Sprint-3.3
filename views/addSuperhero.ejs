@@ -1,4 +1,4 @@
-// sprint 3. tp 3. Etapa 3. Requerimiento 1.
+<!-- sprint 3. tp 3. Etapa 3. Requerimiento 1. -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +17,7 @@
     <div class="form-container">
         <h1>Crear Superhéroe</h1>
         
-        <form action="/heroes" method="POST">
+        <form action="/api/heroes" method="POST">
             
             <label for="nombreSuperHeroe">Nombre del Superhéroe:</label>
             <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required>
@@ -36,8 +36,7 @@
 
             <label for="poderes">Poderes (separados por coma):</label>
             <input type="text" id="poderes" name="poderes" placeholder="Ej: volar, superfuerza, invisibilidad">
-            
-            // corregir: 
+             
             <label for="aliados">Aliados (separados por coma):</label>
             <input type="text" id="aliados" name="aliados">
 
@@ -46,7 +45,7 @@
 
             <button type="submit">Guardar Superhéroe</button>
             
-            <a href="/" style="margin-left: 10px;">Cancelar</a>
+            <a href="/api/heroes" style="margin-left: 10px;">Cancelar</a>
         </form>
     </div>
 </body>
