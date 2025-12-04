@@ -36,7 +36,18 @@ export const superheroeValidations = [
 
     //  Sprint 3. tp 2. Requerimiento 4:
     
+   
   body('poderes')
+        .notEmpty().withMessage("Campo 'poderes' obligatorio.")
+      .custom(value => {
+        if (!value || typeof value !== 'string') throw new Error("Poderes inválidos.");
+        const poderesArray = value.split(',').map(p => p.trim()).filter(p => p.length >= 3 && p.length <= 60);
+        if (poderesArray.length === 0) throw new Error("El campo poderes debe contener al menos un poder válido (entre 3 y 60 caracteres).");
+        return true;
+      }),
+
+      //falta debilidad, aliados, enemigos ver trello??? sprint 3 tp 2 Requeriminto...
+  /*
     .isArray({ min: 1 }).withMessage('Debe proporcionar al menos un poder del superheroe')
     
     .custom((poderes) => {
@@ -47,4 +58,5 @@ export const superheroeValidations = [
         poder.trim().length <= 60
       );
     }).withMessage('Cada poder del superheroe debe ser un string de 3 a 60 caracteres sin espacios en blanco')
-];
+*/
+    ];

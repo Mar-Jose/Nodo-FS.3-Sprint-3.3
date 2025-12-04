@@ -61,13 +61,26 @@
  <% if (heroes.length > 0) { %>
  <% heroes.forEach(hero => { %>
 
-    <article class="hero-card" style="flex: 1 1 calc(50% - 20px);">
+    <!-- <article class="hero-card" style="flex: 1 1 calc(50% - 20px);"> -->
+        <article class="hero-card" 
+        style="
+                display: inline-block; 
+                width: auto;
+                max-width: 500px;
+                padding: 20px; 
+                background: #ffe6f2;        
+                border: 4px double #000;    
+                border-radius: 10px;
+                margin: 10px; ">
+
         <h3><%= hero.nombreSuperheroe %></h3>
         <p><strong>Nombre real:</strong> <%= hero.nombreReal %></p>
         <p><strong>Edad:</strong> <%= hero.edad %></p>
         <p><strong>Planeta de origen:</strong> <%= hero.planetaOrigen %></p>
         <p><strong>Poderes:</strong> <%= hero.poderes %></p>
         <p><strong>Debilidades:</strong> <%= hero.debilidad %></p>
+
+         <!-- VER MÁS  -->
 
         <a href="/api/heroes/<%= hero.id %>">Ver más</a>
 

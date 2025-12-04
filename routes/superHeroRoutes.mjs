@@ -18,7 +18,6 @@ import {
     //..
     actualizarSuperheroeVistaController,
 
-
     //Sprint 3. tp 3 Etapa 5. 
     eliminarSuperheroeController,
 
@@ -33,8 +32,9 @@ import { superheroeValidations } from '../validations/superheroesValidations.mjs
 const router = express.Router();
 
 router.get('/heroes', obtenerTodosLosSuperHeroesController);
+// +++ si agrego la siguiente ruta funciona el boton ver más. No funciona Editar +++
+//router.get('/heroes/:id', obtenerSuperHeroePorIdController);
 /*
-router.get('/heroes/:id', obtenerSuperHeroePorIdController);
 router.get('/heroes/buscar/:atributo/:valor', buscarSuperheroesPorAtributoController);
 router.get('/heroes/mayores-30', obtenerSuperHeroesMayoresDe30Controller);
 */
@@ -46,7 +46,7 @@ router.get('/heroes/nuevo', rutaParaFormularioVistaAddController);
 router.post('/heroes', superheroeValidations, validate, AgregarSuperHeroeController); 
 
 //Requerimientos del sprint 3. tp 2:
-router.post('/heroes', superheroeValidations, validate, crearSuperHeroeController); 
+//...router.post('/heroes', superheroeValidations, validate, crearSuperHeroeController); 
 //Requerimientos del sprint 3. tp 1:
 router.put('/heroes/id/:id', actualizarSuperHeroeController);
 //router.delete('/heroes/id/:id', eliminarSuperHeroexIdController);

@@ -1,4 +1,4 @@
-<%# sprint 3. tp 3. Etapa 4. Requerimiento 1. %>
+<!-- sprint 3. tp 3. Etapa 3. Requerimiento 1. -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -18,12 +18,9 @@
 <body>
     <div class="form-container">
         <h1>Editar Superhéroe: <%= heroe.nombreSuperHeroe %></h1>
-        <a href="/api/heroes" style="display: block; margin-bottom: 20px;">Volver al Dashboard</a>  
-        <form action="/api/heroes/actualizar/<%= heroe._id %>?_method=PUT" method="POST">
-            
-            <label for="nombreSuperHeroe">Nombre del Superhéroe:</label>
-            <input type="text" id="nombreSuperHeroe" name="nombreSuperHeroe" required value="<%= typeof heroe.nombreSuperHeroe !== 'undefined' ? heroe.nombreSuperHeroe : '' %>">
-                
+        <a href="/api/heroes" style="display: block; margin-bottom: 20px;">Volver al Dashboard</a> 
+
+        <!-- bloque de errores generales  -->
           <% if (typeof errores !== 'undefined') { %>
                 <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
                     <p>Corrija los siguientes errores:</p>
@@ -34,25 +31,25 @@
                     </ul>
                 </div>
             <% } %>
-
-            <label for="nombreSuperHeroe">Nombre del Superhéroe:</label>
+        <form action="/api/heroes/actualizar/<%= heroe._id %>?_method=PUT" method="POST">
+            
     
+            <label for="nombreSuperHeroe">Nombre del Superhéroe:</label>
             <input type="text" 
                    id="nombreSuperHeroe" 
                    name="nombreSuperHeroe" 
-                   required 
-                   value="<%= typeof heroe.nombreSuperHeroe !== 'undefined' ? heroe.nombreSuperHeroe : '' %>">
-            <%# Mostrar mensaje de error específico (Opcional) %>
+                   required value="<%= typeof heroe.nombreSuperHeroe !== 'undefined' ? heroe.nombreSuperHeroe : '' %>">
+           
+            <!-- <%# Mensaje de error específico. %> -->
             <% if (typeof errores !== 'undefined') { errores.forEach(error => { if (error.path === 'nombreSuperHeroe') { %>
                 <p class="error-message"><%= error.msg %></p>
-            <% }}); } %>
+            <% }}); } %> 
                 
             <label for="nombreReal">Nombre Real:</label>
             <input type="text" 
                    id="nombreReal" 
                    name="nombreReal" 
-                   required 
-                   value="<%= typeof heroe.nombreReal !== 'undefined' ? heroe.nombreReal : '' %>">
+                   required value="<%= typeof heroe.nombreReal !== 'undefined' ? heroe.nombreReal : '' %>">
             <% if (typeof errores !== 'undefined') { errores.forEach(error => { if (error.path === 'nombreReal') { %>
                 <p class="error-message"><%= error.msg %></p>
             <% }}); } %>
@@ -61,8 +58,7 @@
             <input type="number" 
                    id="edad" 
                    name="edad" 
-                   required 
-                   value="<%= typeof heroe.edad !== 'undefined' ? heroe.edad : '' %>">
+                   required value="<%= typeof heroe.edad !== 'undefined' ? heroe.edad : '' %>">
             <% if (typeof errores !== 'undefined') { errores.forEach(error => { if (error.path === 'edad') { %>
                 <p class="error-message"><%= error.msg %></p>
             <% }}); } %>
@@ -71,8 +67,7 @@
             <input type="text" 
                    id="planetaOrigen" 
                    name="planetaOrigen" 
-                   required 
-                   value="<%= typeof heroe.planetaOrigen !== 'undefined' ? heroe.planetaOrigen : '' %>">
+                   required value="<%= typeof heroe.planetaOrigen !== 'undefined' ? heroe.planetaOrigen : '' %>">
             <% if (typeof errores !== 'undefined') { errores.forEach(error => { if (error.path === 'planetaOrigen') { %>
                 <p class="error-message"><%= error.msg %></p>
             <% }}); } %>
@@ -85,8 +80,10 @@
                    id="poderes" 
                    name="poderes" 
                    placeholder="Ej: volar, superfuerza, invisibilidad"
-                   value="<%= heroe.poderes ? (Array.isArray(heroe.poderes) ? heroe.poderes.join(', ') : heroe.poderes) : '' %>"> 
-            
+                   value="<%= heroe.poderes.join(', ')%>">
+
+
+
             <label for="aliados">Aliados (separados por coma):</label>
             <input type="text" 
                    id="aliados" 

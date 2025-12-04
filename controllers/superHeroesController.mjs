@@ -1,3 +1,4 @@
+import { validationResult } from 'express-validator';  //importación de función que permite encontrar errores y mostrar en la vista/redirect
 import { obtenerSuperHeroePorId, obtenerTodosLosSuperHeroes, buscarSuperHeroePorAtributo, obtenerSuperHeroesMayoresDe30, crearSuperHeroe, actualizarSuperHeroe, eliminarSuperHeroexId, eliminarSuperHeroexNombre } from '../services/superheroesServices.mjs';
 import { renderizarSuperheroe, renderizarListaSuperheroes } from '../views/responseView.mjs';                             
                                                             
@@ -100,6 +101,7 @@ export async function crearSuperHeroeController(req, res) {
 
 //sprint 3. tp 3. Etapa 3. Requerimiento 3.
 export async function AgregarSuperHeroeController(req, res) {
+  console.log("estoy en la función controlador, agregar para crear.");
   try {
     const nuevoSuperheroe = req.body;
     const superheroeCreado = await crearSuperHeroe(nuevoSuperheroe);
