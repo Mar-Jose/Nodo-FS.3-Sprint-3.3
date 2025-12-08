@@ -5,6 +5,7 @@ import { renderizarSuperheroe, renderizarListaSuperheroes } from '../views/respo
 
 export async function obtenerSuperHeroePorIdController(req, res) {
     try {
+      console.log("estoy en la capa controllers, f:obtener todos x Id");
         const { id } = req.params;
         const superheroe = await obtenerSuperHeroePorId(id);
         if (!superheroe) {
@@ -20,6 +21,7 @@ export async function obtenerSuperHeroePorIdController(req, res) {
 // sprint 3. tp 3. Etapa 4. Requerimiento 4.
 export async function editarSuperheroeController(req, res) {
     try {
+      console.log("estoy en la capa controllers, f:editar");
         const { id } = req.params; 
         const heroe = await obtenerSuperHeroePorId(id);
 
@@ -37,6 +39,7 @@ export async function editarSuperheroeController(req, res) {
 
 export async function obtenerTodosLosSuperHeroesController(req, res) {
     try {
+      console.log("estoy en la capa controllers, f:obtener todos");
         const superheroes = await obtenerTodosLosSuperHeroes();
         //sprint 3. tp 3. Etapa 2. Requerimiento 3.
         res.render('dashboard',{ heroes: superheroes }); 
@@ -60,6 +63,7 @@ export async function rutaParaFormularioVistaAddController(req, res) {
 
 export async function buscarSuperheroesPorAtributoController(req, res) {
     try {
+      console.log("estoy en la capa controllers, f:atributo");
         const { atributo, valor } = req.params;
         const superheroes = await  buscarSuperHeroePorAtributo(atributo, valor);
         if (superheroes.length === 0) {
@@ -89,6 +93,7 @@ export async function obtenerSuperHeroesMayoresDe30Controller(req, res) {
 
 export async function crearSuperHeroeController(req, res) {
   try {
+    console.log("estoy en la capa controllers, f:crear");
     const nuevoSuperheroe = req.body;
     const superheroeCreado = await crearSuperHeroe(nuevoSuperheroe);
     
@@ -101,8 +106,8 @@ export async function crearSuperHeroeController(req, res) {
 
 //sprint 3. tp 3. Etapa 3. Requerimiento 3.
 export async function AgregarSuperHeroeController(req, res) {
-  console.log("estoy en la función controlador, agregar para crear.");
   try {
+     console.log("estoy en la función controlador, agregar para crear.");
     const nuevoSuperheroe = req.body;
     const superheroeCreado = await crearSuperHeroe(nuevoSuperheroe);
      res.redirect('/heroes');
@@ -110,6 +115,7 @@ export async function AgregarSuperHeroeController(req, res) {
         res.status(500).render('addSuperheroe', {error:'Error al crear el superhéroe.'});
       }
     };
+  
  /*
 Sprint 3. tp 3. Etapa & Requerimiento 2. (activar= descomentar)
 export async function AgregarSuperHeroeController(req, res) {
@@ -142,6 +148,7 @@ export async function AgregarSuperHeroeController(req, res) {
 
 export async function actualizarSuperHeroeController(req, res) {
   try {
+    console.log("estoy en la capa controllers, f:actualizar");
     const { id } = req.params;
     const datosActualizados = req.body;
     
@@ -159,6 +166,7 @@ export async function actualizarSuperHeroeController(req, res) {
 }
  // Sprint 3. tp 3. Etapa &. Requerimiento 3 formulario edit...
  export async function actualizarSuperheroeVistaController(req, res) {
+  console.log("estoy en la capa controllers, f:actualizar-vista");
     const { id } = req.params;
     const datosSuperheroe = req.body;
     const errors = validationResult(req);
@@ -204,6 +212,7 @@ export async function eliminarSuperHeroexIdController(req, res) {
 // Sprint 3. tp 3. Etapa 5 Requerimiento 4
 export async function eliminarSuperheroeController(req, res) {
   try {
+     console.log("estoy en la función controlador, f: delete.");
     const { id } = req.params;
     const superheroeEliminado = await eliminarSuperHeroexId(id);
     
